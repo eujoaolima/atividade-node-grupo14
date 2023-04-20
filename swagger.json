@@ -1,0 +1,158 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "API REST - Escopo #1 Atividade Node",
+        "description": "API REST para teste"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+        "/alunos": {
+            "get": {
+                "summary": "Listar alunos",
+                "description": "Retorna uma lista de alunos",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "João Pedro"
+                                    },
+                                    "idade": {
+                                        "type": "integer",
+                                        "example": 21
+                                    },
+                                    "sexo": {
+                                        "type": "string",
+                                        "example": "M"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "post": {
+                "summary": "Adicionar alunos",
+                "description": "Adiciona um novo aluno ao banco de dados",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "João Pedro"
+                                    },
+                                    "idade": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "sexo": {
+                                        "type": "string",
+                                        "example": "M"
+                                    },
+                                    "turmaId": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/alunos/:id": {
+            "get": {
+                "summary": "Listar um aluno em específico",
+                "description": "Retorna uma lista de alunos baseada no ID do aluno",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "João Pedro"
+                                    },
+                                    "idade": {
+                                        "type": "integer",
+                                        "example": 21
+                                    },
+                                    "sexo": {
+                                        "type": "string",
+                                        "example": "M"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "put": {
+                "summary": "Atualizar os dados de um aluno baseado em seu ID",
+                "description": "Atualiza os dados de um aluno baseado em seu ID",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "João -> Lucas"
+                                    },
+                                    "idade": {
+                                        "type": "integer",
+                                        "example": "21 -> 25"
+                                    },
+                                    "sexo": {
+                                        "type": "string",
+                                        "example": "M"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "delete": {
+                "summary": "Deletar permanentemente os dados de um aluno baseado em seu ID",
+                "description": "Deleta os dados de um aluno baseado em seu ID",
+                "produces": ["application/json"],
+                "responses": {
+                    "204": {
+                        "description": "Tarefa excluída com sucesso"
+                    },
+                    "404": {
+                        "description": "Tarefa não encontrada"
+                    }
+                }
+            }
+        }
+    }
+}

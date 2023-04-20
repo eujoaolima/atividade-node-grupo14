@@ -10,17 +10,6 @@ const router = Router();
 
 // Lista de alunos
 
-/**
- * @swagger
- * /alunos:
- *   get:
- *     summary: Retorna a lista de alunos
- *     description: Retorna a lista de alunos cadastrados no sistema
- *     responses:
- *       200:
- *         description: Lista de alunos
- */
-
 router.get("/alunos", async (req, res) => {
     const listaAlunos = await Aluno.findAll(
         {
@@ -35,17 +24,6 @@ router.get("/alunos", async (req, res) => {
 });
 
 // Lista para achar um aluno em específico
-
-/**
- * @swagger
- * /usuarios:
- *   get:
- *     summary: Retorna uma lista de alunos específica, por ID
- *     description: Retorna a lista de alunos cadastrados no sistema por ID
- *     responses:
- *       200:
- *         description: Lista de alunos
- */
 
 router.get("/alunos/:id", async (req, res) => {
     const alunoId = await Aluno.findOne({ where: { id: req.params.id } });
