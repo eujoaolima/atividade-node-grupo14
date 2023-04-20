@@ -15,12 +15,12 @@ const Turma = connection.define("turma", {
 
 // 1:1
 
-Turma.hasOne(Professor);
+Turma.hasOne(Professor, {onDelete: "CASCADE"});
 Professor.belongsTo(Turma);
 
 // 1:N
 
-Turma.hasMany(Aluno);
+Turma.hasMany(Aluno, {onDelete: "CASCADE"});
 Aluno.belongsTo(Turma);
 
 
