@@ -6,7 +6,10 @@ const Aluno = require("./aluno");
 const Turma = connection.define("turma", {
     serie: {
         type: DataTypes.STRING(),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isIn: [["6", "7", "8", "9", "1", "2", "3"]],
+        },
     }
 });
 

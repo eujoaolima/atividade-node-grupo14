@@ -9,12 +9,20 @@ const Aluno = connection.define("aluno", {
 
     sexo: {
         type: DataTypes.STRING(1),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isIn: [["F", "M"]]
+        }
     },
 
     idade: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isInt: true,
+            min: 10,
+            max: 17
+        }
     }
 });
 

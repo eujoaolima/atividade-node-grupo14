@@ -1,5 +1,6 @@
 const Aluno = require("../databases/aluno");
 const Turma = require("../databases/turma");
+const { Op } = require("sequelize");
 
 const { Router } = require("express");
 
@@ -9,12 +10,42 @@ const router = Router();
 
 // Lista de alunos
 
+/**
+ * @swagger
+ * /alunos:
+ *   get:
+ *     summary: Retorna a lista de alunos
+ *     description: Retorna a lista de alunos cadastrados no sistema
+ *     responses:
+ *       200:
+ *         description: Lista de alunos
+ */
+
 router.get("/alunos", async (req, res) => {
-    const listaAlunos = await Aluno.findAll();
+    const listaAlunos = await Aluno.findAll(
+        {
+            where: {
+            [Op.and]: [
+                { idade: { [Op.lt]: 40 } },
+                { sexo: {[Op.eq]: "F"} },
+            ]
+    }}
+    );
     res.status(200).json(listaAlunos);
 });
 
 // Lista para achar um aluno em específico
+
+/**
+ * @swagger
+ * /usuarios:
+ *   get:
+ *     summary: Retorna uma lista de alunos específica, por ID
+ *     description: Retorna a lista de alunos cadastrados no sistema por ID
+ *     responses:
+ *       200:
+ *         description: Lista de alunos
+ */
 
 router.get("/alunos/:id", async (req, res) => {
     const alunoId = await Aluno.findOne({ where: { id: req.params.id } });

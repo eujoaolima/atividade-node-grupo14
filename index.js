@@ -1,13 +1,16 @@
 // Configurar o servidor HTTP
 require("dotenv").config();
 const express = require("express");
-
+const swagger = require("./swagger");
 const app = express();
+swagger(app);
 app.use(express.json());
 
 const { connection, authenticate } = require("./databases/database");
 
 authenticate(connection);
+
+
 
 // Relacionamentos:
 
@@ -41,6 +44,6 @@ app.use(rotaAluno);
 
 // Escuta de eventos (listen)
 app.listen(3000, () => {
-    connection.sync({ force: true })
+    connection.sync({ force: false })
     console.log("Servidor rodando em http://localhost:3000");
 });
