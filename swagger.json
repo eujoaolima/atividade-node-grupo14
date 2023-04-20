@@ -3,7 +3,7 @@
     "info": {
         "version": "1.0.0",
         "title": "API REST - Escopo #1 Atividade Node",
-        "description": "API REST para teste"
+        "description": "Atividade do Bootcamp de Desenvolvimento FullStack de React & Node, onde desenvolvemos uma API de uma instituição acadêmica sincronizada ao banco de dados. "
     },
     "host": "localhost:3000",
     "basePath": "/",
@@ -150,6 +150,286 @@
                     },
                     "404": {
                         "description": "Tarefa não encontrada"
+                    }
+                }
+            }
+        },
+
+        "/turma": {
+            "get": {
+                "summary": "Listar todas as turmas",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de turmas recuperada com sucesso",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "serie": {
+                                        "type": "string",
+                                        "example": "9ºA"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Criar uma nova turma",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Informações da turma a ser criada",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "serie": {
+                                        "type": "string",
+                                        "example": "6ºA - 7ºB - 8ºC - 9ºD"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "/turma/{id}": {
+            "get": {
+                "summary": "Buscar uma turma pelo ID",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de turmas por um ID",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "serie": {
+                                        "type": "string",
+                                        "example": "9ºA"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar uma turma pelo ID",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "serie": {
+                                        "type": "string",
+                                        "example": "6ºA -> 7ºB"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turma atualizada com sucesso",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "serie": {
+                                        "type": "string",
+                                        "example": "6ºA -> 7ºB"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Turma não encontrada"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Excluir uma turma pelo ID",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da turma",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turma removida com sucesso"
+                    },
+                    "404": {
+                        "description": "Turma não encontrada"
+                    }
+                }
+            }
+        },
+        "/professor": {
+            "get": {
+                "summary": "Listar todos os professores",
+                "description": "Lista todos os professores cadastrados no banco de dados",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Dr. José Almir"
+                                    },
+                                    "idade": {
+                                        "type": "integer",
+                                        "example": 23
+                                    },
+                                    "materia": {
+                                        "type": "string",
+                                        "example": "Desenvolvimento FullStack"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Adicionar um novo professor ao banco de dados",
+                "description": "Adiciona um novo professor ao banco de dados",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Me. Francisco Chico Gabriel Braga"
+                                    },
+                                    "idade": {
+                                        "type": "integer",
+                                        "example": 21
+                                    },
+                                    "materia": {
+                                        "type": "string",
+                                        "example": "Desenvolvimento FullStack"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/professor/:id": {
+            "get": {
+                "summary": "Listar professor por ID",
+                "description": "Lista específica de um professor baseado em seu ID",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Dr. José Almir"
+                                    },
+                                    "idade": {
+                                        "type": "integer",
+                                        "example": 23
+                                    },
+                                    "materia": {
+                                        "type": "string",
+                                        "example": "Desenvolvimento FullStack"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar dados do professor",
+                "description": "Atualiza os dados de um professor específico pelo ID",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Professor atualizado com sucesso",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Dr. José Almir -> Me. Francisco Chico Gabriel Braga"
+                                    },
+                                    "idade": {
+                                        "type": "integer",
+                                        "example": "23 -> 21"
+                                    },
+                                    "materia": {
+                                        "type": "string",
+                                        "example": "Desenvolvimento FullStack"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Turma não encontrada"
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar professor do banco de dados",
+                "description": "Remove um professor específico pelo ID do banco de dados",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Professor removido"
+                    },
+                    "404": {
+                        "description": "Professor não encontrado"
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
                     }
                 }
             }
